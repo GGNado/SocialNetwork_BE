@@ -64,5 +64,12 @@ public class UtenteController {
     {
         return ResponseEntity.ok(utenteService.findAllFollowersByUserId(id));
     }
+    @GetMapping("/all/checklike/post/{id}")
+    public ResponseEntity<Boolean> checkLikeByPostId(Authentication auth, @PathVariable Long id)
+    {
+        Utente u = (Utente)auth.getPrincipal();
+        Boolean response = utenteService.checkIfUserLikedPost(u.getId(),id);
+        return ResponseEntity.ok(response);
+    }
 
 }

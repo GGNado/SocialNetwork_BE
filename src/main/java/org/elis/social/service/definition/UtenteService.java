@@ -17,4 +17,6 @@ public interface UtenteService {
     void registerBaseUser(RegisterUserDTO dto);
     ResponseUserDTO login(LoginDTO dto);
     void follow(InsertFollowDTO dto, Utente follower);
+
+    Boolean checkIfUserLikedPost(Long idUtente, Long idPost);
 }

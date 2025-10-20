@@ -89,4 +89,17 @@ public class UtenteServiceImpl implements UtenteService {
         }
         utenteRepositoryJpa.save(utenteWithFollowers);
     }
+
+    @Override
+    public Boolean checkIfUserLikedPost(Long idUtente, Long idPost) {
+        Utente utente = utenteRepositoryJpa.findUserWithLikesByUserId(idUtente).orElseThrow(()->new NotFoundException("utente non trovato per id: "+idUtente));
+        for(var p : utente.getLikedPosts())
+        {
+            if(p.getId().equals(idPost))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }
