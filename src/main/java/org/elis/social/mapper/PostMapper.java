@@ -3,6 +3,7 @@ package org.elis.social.mapper;
 import lombok.RequiredArgsConstructor;
 import org.elis.social.dto.request.post.InsertPostDTO;
 import org.elis.social.dto.response.post.ResponsePostDTO;
+import org.elis.social.dto.response.utente.ResponseUserFullDTO;
 import org.elis.social.model.Comment;
 import org.elis.social.model.Hashtag;
 import org.elis.social.model.Post;
@@ -61,5 +62,14 @@ public class PostMapper {
         }).toList());
         entity.setText(dto.getText());
         return entity;
+    }
+
+    public ResponseUserFullDTO toResponseFullDTO(Utente utente){
+        ResponseUserFullDTO full = new ResponseUserFullDTO();
+        full.setUser(utenteMapper.toResponseUserDto(utente));
+        full.setPostList(utente.getPosts().stream()
+                .map(this::toResponsePostDTO)
+                .toList());
+        return full;
     }
 }

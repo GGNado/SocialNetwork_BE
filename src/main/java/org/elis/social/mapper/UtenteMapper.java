@@ -3,6 +3,7 @@ package org.elis.social.mapper;
 import lombok.RequiredArgsConstructor;
 import org.elis.social.dto.request.utente.RegisterUserDTO;
 import org.elis.social.dto.response.utente.ResponseUserDTO;
+import org.elis.social.dto.response.utente.ResponseUserFullDTO;
 import org.elis.social.model.Utente;
 import org.springframework.stereotype.Component;
 

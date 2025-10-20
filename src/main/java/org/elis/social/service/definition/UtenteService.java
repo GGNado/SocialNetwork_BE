@@ -4,6 +4,7 @@ import org.elis.social.dto.request.utente.InsertFollowDTO;
 import org.elis.social.dto.request.utente.LoginDTO;
 import org.elis.social.dto.request.utente.RegisterUserDTO;
 import org.elis.social.dto.response.utente.ResponseUserDTO;
+import org.elis.social.dto.response.utente.ResponseUserFullDTO;
 import org.elis.social.model.Utente;
 
 import java.util.List;
@@ -13,6 +14,7 @@ public interface UtenteService {
     void checkUsernameAvailability(String username);
     List<ResponseUserDTO> findAllFollowersByUserId(Long id);
     ResponseUserDTO findById(Long id);
+    ResponseUserFullDTO findByIdFull(Long id);
     List<ResponseUserDTO> findAllUserLikesByPostId(Long id);
     void registerBaseUser(RegisterUserDTO dto);
     ResponseUserDTO login(LoginDTO dto);

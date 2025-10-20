@@ -6,6 +6,7 @@ import org.elis.social.dto.request.utente.InsertFollowDTO;
 import org.elis.social.dto.request.utente.LoginDTO;
 import org.elis.social.dto.request.utente.RegisterUserDTO;
 import org.elis.social.dto.response.utente.ResponseUserDTO;
+import org.elis.social.dto.response.utente.ResponseUserFullDTO;
 import org.elis.social.model.Utente;
 import org.elis.social.security.jwt.JwtUtilities;
 import org.elis.social.service.definition.UtenteService;
@@ -73,10 +74,10 @@ public class UtenteController {
     }
 
     @GetMapping("/base/user")
-    public ResponseEntity<ResponseUserDTO> findById(Authentication auth)
+    public ResponseEntity<ResponseUserFullDTO> findById(Authentication auth)
     {
         Utente u = (Utente)auth.getPrincipal();
-        return ResponseEntity.ok(utenteService.findById(u.getId()));
+        return ResponseEntity.ok(utenteService.findByIdFull(u.getId()));
     }
 
 }

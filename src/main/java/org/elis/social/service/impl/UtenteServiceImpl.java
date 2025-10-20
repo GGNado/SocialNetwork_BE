@@ -5,7 +5,9 @@ import org.elis.social.dto.request.utente.InsertFollowDTO;
 import org.elis.social.dto.request.utente.LoginDTO;
 import org.elis.social.dto.request.utente.RegisterUserDTO;
 import org.elis.social.dto.response.utente.ResponseUserDTO;
+import org.elis.social.dto.response.utente.ResponseUserFullDTO;
 import org.elis.social.errorhandling.exceptions.NotFoundException;
+import org.elis.social.mapper.PostMapper;
 import org.elis.social.mapper.UtenteMapper;
 import org.elis.social.model.Ruolo;
 import org.elis.social.model.Utente;
@@ -25,6 +27,7 @@ public class UtenteServiceImpl implements UtenteService {
     private final UtenteMapper utenteMapper;
     private final UtenteRepositoryJpa utenteRepositoryJpa;
     private final PasswordEncoder passwordEncoder;
+    private final PostMapper postMapper;
 
     @Override
     public void checkUsernameAvailability(String username) {
@@ -44,6 +47,11 @@ public class UtenteServiceImpl implements UtenteService {
     @Override
     public ResponseUserDTO findById(Long id) {
         return utenteMapper.toResponseUserDto(utenteRepositoryJpa.findById(id).orElseThrow(()->new NotFoundException("utente non trovato per id: "+id)));
+    }
+
+    @Override
+    public ResponseUserFullDTO findByIdFull(Long id) {
+        return postMapper.toResponseFullDTO(utenteRepositoryJpa.findById(id).orElseThrow(()->new NotFoundException("utente non trovato per id: "+id)));
     }
 
     @Override
