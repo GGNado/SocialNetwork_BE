@@ -49,6 +49,8 @@ public class PostServiceImpl implements PostService {
         newPost.setHashtags(new ArrayList<>());
         newPost.setComments(new ArrayList<>());
         newPost.setUserLikes(new ArrayList<>());
+        newPost.setImageUrl(dto.getImageUrl());
+        newPost.setTitle(dto.getTitle());
         if(dto.getHashtags()!=null&&!dto.getHashtags().isEmpty())
         {
             createOrSearchHashtags(newPost, dto.getHashtags());
