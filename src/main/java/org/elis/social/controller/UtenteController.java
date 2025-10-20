@@ -72,4 +72,11 @@ public class UtenteController {
         return ResponseEntity.ok(response);
     }
 
+    @GetMapping("/base/user")
+    public ResponseEntity<ResponseUserDTO> findById(Authentication auth)
+    {
+        Utente u = (Utente)auth.getPrincipal();
+        return ResponseEntity.ok(utenteService.findById(u.getId()));
+    }
+
 }
