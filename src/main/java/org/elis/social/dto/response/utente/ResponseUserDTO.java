@@ -13,5 +13,6 @@ public class ResponseUserDTO {
     private String email;
     private String username;
     private String phoneNumber;
+    private String imageUrl;
     private Ruolo role;
 }

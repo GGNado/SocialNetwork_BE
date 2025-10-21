@@ -28,6 +28,8 @@ public class Utente implements UserDetails {
     @Column(nullable = false)
     private String phoneNumber;
 
+    @Column(nullable = false)
+    private String imgUrl = "https://img.freepik.com/premium-vector/user-icSon-icon_1076610-59410.jpg";
 
     @ManyToMany
     @JoinTable(uniqueConstraints = @UniqueConstraint(columnNames = {"utente_id","followers_id"}))

@@ -1,9 +1,11 @@
 package org.elis.social.dto.request.utente;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -23,4 +25,6 @@ public class RegisterUserDTO {
     @Pattern(regexp ="^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$",message = "la password deve contenere minimo 8 caratteri, un carattere minuscolo, un carattere maiuscolo, un numero e un carattere speciale")
     @NotNull(message = "password mancante")
     private String password;
+    @Schema(example = "https://img.freepik.com/premium-vector/user-icSon-icon_1076610-59410.jpg")
+    private String imgUrl;
 }

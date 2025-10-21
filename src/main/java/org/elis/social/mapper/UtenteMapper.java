@@ -26,6 +26,7 @@ public class UtenteMapper {
         dto.setPhoneNumber(entity.getPhoneNumber());
         dto.setUsername(entity.getUsername());
         dto.setRole(entity.getRole());
+        dto.setImageUrl(entity.getImgUrl());
         return dto;
     }
 }

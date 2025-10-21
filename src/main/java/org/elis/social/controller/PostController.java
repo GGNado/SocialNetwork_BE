@@ -20,8 +20,6 @@ import java.util.List;
 public class PostController {
     private final PostService postService;
 
-
-
     @GetMapping("/all/post/paged/{pageNumber}")
     public ResponseEntity<PagedEntity<ResponsePostDTO>> postsByPage(@PathVariable Integer pageNumber) {
         return ResponseEntity.ok(postService.findByPage(pageNumber));
