@@ -6,6 +6,7 @@ import org.elis.social.dto.request.post.InsertPostDTO;
 import org.elis.social.dto.request.post.UpdatePostDTO;
 import org.elis.social.dto.response.PagedEntity;
 import org.elis.social.dto.response.post.ResponsePostDTO;
+import org.elis.social.dto.response.utente.ResponseUserDTO;
 import org.elis.social.model.Utente;
 import org.elis.social.service.definition.PostService;
 import org.hibernate.sql.Update;
@@ -72,5 +73,12 @@ public class PostController {
         Utente u =(Utente) auth.getPrincipal();
         postService.deleteById(id,u);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/base/post/likers/{id}")
+    private ResponseEntity<List<ResponseUserDTO>> findAllLikers(@PathVariable Long id){
+        return ResponseEntity.ok(
+                postService.findAllLikersFromPostId(id)
+        );
     }
 }

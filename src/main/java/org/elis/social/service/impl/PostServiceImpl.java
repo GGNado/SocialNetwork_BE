@@ -5,9 +5,11 @@ import org.elis.social.dto.request.post.InsertPostDTO;
 import org.elis.social.dto.request.post.UpdatePostDTO;
 import org.elis.social.dto.response.PagedEntity;
 import org.elis.social.dto.response.post.ResponsePostDTO;
+import org.elis.social.dto.response.utente.ResponseUserDTO;
 import org.elis.social.errorhandling.exceptions.NotFoundException;
 import org.elis.social.errorhandling.exceptions.OwnershipException;
 import org.elis.social.mapper.PostMapper;
+import org.elis.social.mapper.UtenteMapper;
 import org.elis.social.model.Hashtag;
 import org.elis.social.model.Post;
 import org.elis.social.model.Ruolo;
@@ -28,6 +30,7 @@ import java.util.List;
 public class PostServiceImpl implements PostService {
     private final PostRepositoryJpa postRepositoryJpa;
     private final PostMapper postMapper;
+    private final UtenteMapper utenteMapper;
     private final UtenteRepositoryJpa utenteRepositoryJpa;
     private final HashtagRepositoryJpa hashtagRepositoryJpa;
 
@@ -136,6 +139,12 @@ public class PostServiceImpl implements PostService {
         utenteRepositoryJpa.save(utente);
         return postMapper.toResponsePostDTO(toLike);
 
+    }
+
+    @Override
+    public List<ResponseUserDTO> findAllLikersFromPostId(Long id) {
+        Post post = findPostById(id);
+        return post.getUserLikes().stream().map(utenteMapper::toResponseUserDto).toList();
     }
 
     //Metodi di utilita' (speriamo che funzionino)
